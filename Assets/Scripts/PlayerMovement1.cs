@@ -2,48 +2,36 @@
 
 public class PlayerMovement1 : MonoBehaviour
 {
-    public Rigidbody rb;
-    public float movementForce = 20f;
+    private CharacterController controller;
+    private Vector3 playerVelocity;
+    private bool groundedPlayer;
+    private float playerSpeed = 10.0f;
+    private float rotSpeed = 180.0f;
+    private Vector3 rotation;
 
-    private bool moveLeft = false;
-    private bool moveRight = false;
-    private bool moveUp = false;
-    private bool moveDown = false;
-
-    void Start()
+    private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        controller = gameObject.GetComponent<CharacterController>();
     }
-
 
     void Update()
     {
-        moveLeft = Input.GetKey("a");
-        moveRight = Input.GetKey("d");
-        moveUp = Input.GetKey("w");
-        moveDown = Input.GetKey("s");
-    }
-
-    void FixedUpdate()
-    {
-        if (moveLeft)
+        groundedPlayer = controller.isGrounded;
+        if (groundedPlayer && playerVelocity.y < 0)
         {
-            rb.AddForce(0, 0, movementForce * Time.deltaTime, ForceMode.VelocityChange);
+            playerVelocity.y = 0f;
         }
 
-        if (moveRight)
+        this.rotation = new Vector3(0, Input.GetAxisRaw("Horizontal") * rotSpeed * Time.deltaTime, 0);
+ 
+        float move = Input.GetAxisRaw("Vertical") * playerSpeed * Time.deltaTime;
+        
+        this.transform.Rotate(this.rotation);
+        //move = this.transform.TransformDirection(move);
+        
+        if (move != 0)
         {
-            rb.AddForce(0, 0, -movementForce * Time.deltaTime, ForceMode.VelocityChange);
-        }
-
-        if (moveUp)
-        {
-            rb.AddForce(movementForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
-        }
-
-        if (moveDown)
-        {
-            rb.AddForce(-movementForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+            controller.Move(transform.forward * move);
         }
     }
 }
