@@ -14,7 +14,7 @@ public class PlayerThrowController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _ballAnchor = transform.parent.gameObject.GetComponentInChildren<BallAnchor>().gameObject;
+        _ballAnchor = GetComponentInChildren<BallAnchor>().gameObject;
     }
 
     // Update is called once per frame
