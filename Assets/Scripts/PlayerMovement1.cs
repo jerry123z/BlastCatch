@@ -6,7 +6,7 @@ public class PlayerMovement1 : MonoBehaviour
     private Vector3 playerVelocity;
     private bool groundedPlayer;
     private float playerSpeed = 10.0f;
-    private float rotSpeed = 180.0f;
+    private float rotSpeed = 120.0f;
     private Vector3 rotation;
 
     private void Start()
