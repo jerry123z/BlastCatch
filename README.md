@@ -7,3 +7,6 @@ If the potato bomb hits the obstacle or if you hold onto the potato for too long
 ## Controlls:
 Movement: WASD, Arrow Keys
 Throwing: Space Bar (For both players)
+
+
+![](demo.gif)
