@@ -11,7 +11,7 @@ public class ThrowItem : MonoBehaviour
         GameObject item = gameObject.GetComponent<Inventory>().item;
         if (item){
             Rigidbody rb = item.GetComponent<Rigidbody>();
-            rb.velocity = new Vector3(20, 20, 0);
+            rb.velocity = new Vector3(XVector, YVector, 0);
         }
     }
 
